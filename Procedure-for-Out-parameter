@@ -1,0 +1,18 @@
+SQL> set serveroutput on; 
+SQL> create procedure zzz (a in number, b out number) is identity number; 
+2 begin 
+3 select ordid into identity from ititems where itemid=a; 
+4 if identity<1000 then                               
+5 b:=100; 
+6 end if; 
+7 end; 
+8 / 
+Procedure created. 
+SQL> declare 
+2 a number; 
+3 b number; 
+4 begin 
+5 zzz(101,b); 
+6 dbms_output.put_line('The value of b is '|| b); 
+7 end; 
+8 / 
